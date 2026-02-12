@@ -53,4 +53,29 @@ const deleteExpense = async (req, res) => {
     }
 }
 
-module.exports = { addExpense, getAllExpenses, deleteExpense };
+const updateExpense = async (req, res) => {
+    try {
+        const { expenseId } = req.params;
+
+        if (!expenseId) {
+            return res.status(400).json({ message: "Expense ID is required" });
+        }
+
+        const { title, amount, date, description } = req.body;
+        const updatedExpense = await ExpenseModel.findByIdAndUpdate(
+            expenseId,
+            { title, amount, date, description }
+        );
+
+        if (!updatedExpense) {
+            return res.status(404).json({ message: "Expense not found" });
+        }
+
+        res.status(200).json(updatedExpense);
+    } catch (error) {
+        res.status(500).json({ message: "Internal Server Error", error: error.message });
+    }
+}
+
+
+module.exports = { addExpense, getAllExpenses, deleteExpense, updateExpense };
