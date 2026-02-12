@@ -102,7 +102,7 @@ const AddExpenses = () => {
       <div className="max-w-4xl mx-auto space-y-6">
         <header className="text-center py-6">
           <h1 className="text-4xl font-black bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent">
-            Expense Manager
+            Clarity: Expense Manager
           </h1>
         </header>
 
